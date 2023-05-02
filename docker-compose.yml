@@ -1,0 +1,27 @@
+services:
+  # frontend:
+  #   build: frontend/
+  #   # image: todo-frontend
+  #   ports:
+  #     - "3000:3000"
+
+  backend:
+    build: backend/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    links:
+     - mongo:db
+
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 
+    ports:
+      - "27017:27017"
+    container_name: db
+    volumes: ~/mongo/data:/data/db

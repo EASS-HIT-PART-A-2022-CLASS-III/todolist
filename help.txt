@@ -1,0 +1,5 @@
+Some Points are good to remeber
+
+1. pydantic -  useful for creating API endpoints that handle incoming data and validate it before processing.
+   It can also be used for parsing configuration files and environment variables.
+2.
