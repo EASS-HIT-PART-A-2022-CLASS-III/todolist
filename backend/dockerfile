@@ -1,9 +1,18 @@
-FROM Python:3.10.1
-WORKDIR /
-COPY ./backend backend
+FROM python:3.10.1
 
-RUN pip install -r requirements.txt
 
-EXPOSE 8000
+WORKDIR /app
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload","--workers","4"]
+COPY ./requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+
+COPY ./main.py .
+
+COPY ./model.py .
+
+COPY ./db.py .
+
+EXPOSE 8080
+
+CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8080"]
