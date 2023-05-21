@@ -9,10 +9,7 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
 COPY ./main.py .s-
 
-COPY ./model.py .
 
-COPY ./db.py .
+EXPOSE 8501
 
-EXPOSE 8080
-
-CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["streamlit", "run", "--server.port", "8501", "main.py"]

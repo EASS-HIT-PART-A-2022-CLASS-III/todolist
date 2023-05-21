@@ -1,13 +1,14 @@
 
 services:
-  # frontend:
-  #   build: frontend/
-  #   # image: todo-frontend
-  #   ports:
-  #     - "3000:3000"
+  frontend:
+    build: frontend/
+    image: todo-frontend
+    ports:
+      - "8501:8501"
 
   backend:
     build: backend/
+    image: todo-backend
     ports:
       - "8000:8000"
     depends_on:
@@ -27,4 +28,6 @@ services:
     container_name: db
     volumes:
       -  ./data:/data/db
+      #ask where it saved
+      
 
