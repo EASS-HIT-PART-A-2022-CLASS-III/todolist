@@ -73,4 +73,4 @@ async def delete_todo(title):
         response = await remove_todo(title)
     if response:
         return response
-    raise HTTPException
+    raise HTTPException(404, f"Could not find a todo with this title {title}")

@@ -1,7 +1,7 @@
 fastapi
 uvicorn 
 pydantic
-pymongo
+pytest
 motor
-pymongo[srv]
 httpx
+pytest-asyncio

@@ -30,10 +30,20 @@ services:
       - mongo_data:/data/db
     ports:
       - 27017:27017
+    
+  # tests:
+  #   build: backend/
+  #   image: backend-tests
+  #   depends_on:
+  #     - mongo
+  #   links:
+  #     - mongo:db
+  #   command: pytest testing.py
+
 
 volumes:
   mongo_data:
-    #where save 
+
 
 
       

@@ -11,6 +11,8 @@ COPY ./main.py .
 
 COPY ./model.py .
 
+COPY ./testing.py .
+
 COPY ./db.py .
 
 EXPOSE 8000

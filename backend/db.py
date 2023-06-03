@@ -1,7 +1,6 @@
 
 from model import Todo
 import motor.motor_asyncio
-import pymongo
 
 client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://admin:admin@db-container:27017')
 
@@ -46,3 +45,4 @@ async def update_todo(todo):
 async def remove_todo(title):
     await collection.delete_one({"title": title})
     return True
+
