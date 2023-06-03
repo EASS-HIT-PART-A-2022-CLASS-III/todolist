@@ -14,7 +14,9 @@ https://github.com/EASS-HIT-PART-A-2022-CLASS-III/todolist/assets/81169397/3a783
 
 ## Installation
 1. Clone the repository to your local machine.
+```
 git clone https://github.com/EASS-HIT-PART-A-2022-CLASS-III/todolist.git
+```
 2. Make sure Docker is running.
 ```
 docker --version
