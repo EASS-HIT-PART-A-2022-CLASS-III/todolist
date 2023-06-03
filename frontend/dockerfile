@@ -7,8 +7,8 @@ COPY ./requirements.txt .
 
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-COPY ./main.py .s-
-
+COPY ./main.py .
+COPY ./model.py .
 
 EXPOSE 8501
 

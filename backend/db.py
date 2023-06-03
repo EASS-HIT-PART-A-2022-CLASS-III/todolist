@@ -1,15 +1,13 @@
 
 from model import Todo
-
-# MongoDB  driver
 import motor.motor_asyncio
+import pymongo
 
-
-client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://root:example@db:27017')
+client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://admin:admin@db-container:27017')
 
 
 # Database TodoList
-database = client.TodoList
+database = client['TodoList']
 # Collection Todo
 collection = database.todo
 
@@ -36,7 +34,9 @@ async def create_todo(todo):
     return document
 
 
-async def update_todo(title, description):
+async def update_todo(todo):
+    description = todo['description']
+    title = todo['title']
     await collection.update_one({"title": title}, {"$set": {"description": description}})
     document = await collection.find_one({"title": title})
 

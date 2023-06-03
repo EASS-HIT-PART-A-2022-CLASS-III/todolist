@@ -1,70 +1,65 @@
 import streamlit as st
-import requests
+import httpx
+from model import Todo
 
-# FastAPI backend URL
-backend_url = "http://localhost:8000"
+# Base URL for the API
+backend_url = "http://backend:8000"
 
-# Streamlit app
+# Streamlit UI
 def main():
     st.title("Todo App")
 
-    menu = ["Create", "Read", "Update", "Delete"]
-    choice = st.sidebar.selectbox("Select Operation", menu)
+    menu = ["Home", "View Todos", "Add Todo", "Update Todo", "Delete Todo"]
+    choice = st.sidebar.selectbox("Menu", menu)
 
-    if choice == "Create":
-        st.subheader("Add Task")
-        task = st.text_input("Enter Task")
-        if st.button("Add"):
-            todo = {"title": task}
-            response = requests.post(f"{backend_url}/api/todo", json=todo)
-            if response.status_code == 200:
-                st.success("Task added successfully!")
+    if choice == "Home":
+        st.subheader("Home")
+        st.write("Welcome to the Todo App!")
+
+    elif choice == "View Todos":
+            st.subheader("View Todos")
+            response = httpx.get(f"{backend_url}/api/todo/all")
+            todos = response.json()
+            print(todos)
+            if isinstance(todos, list):
+                for todo in todos:
+                    st.write(f"Title: {todo['title']}, Description: {todo['description']}")
             else:
-                st.error("Failed to add task")
+                st.write("No todos available.")
 
-    elif choice == "Read":
-        st.subheader("View Tasks")
-        response = requests.get(f"{backend_url}/api/todo")
-        if response.status_code == 200:
-            todos = response.json()
-            for todo in todos:
-                st.write(f"- {todo['title']}")
-        else:
-            st.error("Failed to retrieve tasks")
+    elif choice == "Add Todo":
+        st.subheader("Add Todo")
+        title = st.text_input("Title")
+        description = st.text_area("Description")
+        if st.button("Add"):
+            todo = Todo(title=title, description=description)
+            response = httpx.post(f"{backend_url}/api/todo/add", json=todo.dict())
+            if response.status_code == 200:
+                st.success("Todo added successfully!")
+            else:
+                st.error("Failed to add todo. Please try again later.")
 
-    elif choice == "Update":
-        st.subheader("Update Task")
-        response = requests.get(f"{backend_url}/api/todo")
-        if response.status_code == 200:
-            todos = response.json()
-            todo_list = [todo["title"] for todo in todos]
-            selected_task = st.selectbox("Select Task", todo_list)
-            new_task = st.text_input("Enter New Task")
-            if st.button("Update"):
-                todo = {"title": selected_task, "description": new_task}
-                response = requests.put(f"{backend_url}/api/todo/{selected_task}", json=todo)
-                if response.status_code == 200:
-                    st.success("Task updated successfully!")
-                else:
-                    st.error("Failed to update task")
-        else:
-            st.error("Failed to retrieve tasks")
+    elif choice == "Update Todo":
+        st.subheader("Update Todo")
+        title = st.text_input("Title")
+        description = st.text_area("Description")
+        print(f"This is title {title} and this is description {description}")
+        if st.button("Update"):
+            response = httpx.put(f"{backend_url}/api/todo/update/{title}", json={"title": title, "description": description})
+            if response.status_code == 200:
+                st.success("Todo updated successfully!")
+            else:
+                st.error("Failed to update todo. Please make sure the title exists and try again.")
 
-    elif choice == "Delete":
-        st.subheader("Delete Task")
-        response = requests.get(f"{backend_url}/api/todo")
-        if response.status_code == 200:
-            todos = response.json()
-            todo_list = [todo["title"] for todo in todos]
-            selected_task = st.selectbox("Select Task", todo_list)
-            if st.button("Delete"):
-                response = requests.delete(f"{backend_url}/api/todo/{selected_task}")
-                if response.status_code == 200:
-                    st.success("Task deleted successfully!")
-                else:
-                    st.error("Failed to delete task")
-        else:
-            st.error("Failed to retrieve tasks")
+    elif choice == "Delete Todo":
+        st.subheader("Delete Todo")
+        title = st.text_input("Title")
+        if st.button("Delete"):
+            response = httpx.delete(f"{backend_url}/api/todo/delete/{title}")
+            if response.status_code == 200:
+                st.success("Todo deleted successfully!")
+            else:
+                st.error("Failed to delete todo. Please make sure the title exists and try again.")
 
 if __name__ == "__main__":
     main()

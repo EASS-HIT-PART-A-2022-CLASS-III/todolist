@@ -1,33 +1,40 @@
-
 services:
-  frontend:
-    build: frontend/
-    image: todo-frontend
-    ports:
-      - "8501:8501"
-
   backend:
     build: backend/
-    image: todo-backend
+    image: backend
     ports:
       - "8000:8000"
     depends_on:
       - mongo
     links:
-     - mongo:db
+      - mongo:db    
+
+
+  frontend:
+    build: frontend/
+    image: frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
 
 
   mongo:
-    image: mongo
+    image: mongo:latest
     restart: always
+    container_name: db-container
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 
-    ports:
-      - "27017:27017"
-    container_name: db
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
     volumes:
-      -  ./data:/data/db
-      #ask where it saved
+      - mongo_data:/data/db
+    ports:
+      - 27017:27017
+
+volumes:
+  mongo_data:
+    #where save 
+
+
       
 

@@ -4,4 +4,4 @@ pydantic
 pymongo
 motor
 pymongo[srv]
-streamlit
+httpx
