@@ -38,5 +38,40 @@ docker-compose up
 * Docker
 * Python 3.10 +
 
+## Design Diagram:
+                  +-------------------+
+                  |   Web Browser     |
+                  +-------------------+
+                           |
+                           | HTTP Requests
+                           |
+                  +-------------------+
+                  |   Frontend        |
+                  +-------------------+
+                           |
+                           | API Requests
+                           |
+                  +-------------------+
+                  |    Backend        |
+                  |   (FastAPI)       |
+                  +-------------------+
+                           |
+                           | Database Queries
+                           |
+                  +-------------------+
+                  |    Mongo DB       |
+                  +-------------------+
+                           |
+                           | Docker Commands
+                           |
+                  +-------------------+
+                  |     Docker        |
+                  +-------------------+
+                           |
+                           | Git Commands
+                           |
+                  +-------------------+
+                  |       Git         |
+                  +-------------------+
 ## Authors
 *Yanir*
