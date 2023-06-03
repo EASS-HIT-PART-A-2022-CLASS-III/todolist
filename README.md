@@ -23,6 +23,6 @@ cd todolist
 docker-compose build (for the first time)
 docker-compose up
 ```
-4. Go to localhost:8501 and start to make YOUR TODOLIST ! 
+4. Go to [localhost:8501 ](http://localhost:8501/) and start to make **YOUR TODOLIST** ! 
 
 ![200w](https://github.com/EASS-HIT-PART-A-2022-CLASS-III/todolist/assets/81169397/7e260e1d-969d-4c2a-8703-07beeb0df4a4)
