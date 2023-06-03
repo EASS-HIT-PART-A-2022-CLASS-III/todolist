@@ -31,6 +31,9 @@ docker-compose up
 ## Project Tree
 ![image](https://github.com/EASS-HIT-PART-A-2022-CLASS-III/todolist/assets/81169397/6db61ae6-7d95-48e1-99ac-4d5f07e932ea)
 
+## Requirements
+* Docker
+* Python 3.10 +
 
-
-
+## Authors
+*Yanir*
