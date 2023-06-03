@@ -28,22 +28,6 @@ docker-compose up
 ![200w](https://github.com/EASS-HIT-PART-A-2022-CLASS-III/todolist/assets/81169397/7e260e1d-969d-4c2a-8703-07beeb0df4a4)
 
 ## Project Tree
-```
-📦 
-README.md
-Todolistvideo.mp4
-backend
-│  ├─ db.py
-dockerfile
-main.py
-model.py
-requirements.txt
-│  └─ testing.py
-├─ docker-compose.yml
-└─ frontend
-   ├─ dockerfile
-   ├─ main.py
-   ├─ model.py
-   └─ requirements.txt
-```
+![image](https://github.com/EASS-HIT-PART-A-2022-CLASS-III/todolist/assets/81169397/6db61ae6-7d95-48e1-99ac-4d5f07e932ea)
+
 
