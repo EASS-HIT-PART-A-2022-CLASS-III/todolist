@@ -27,7 +27,7 @@ cd todolist
 docker-compose build (for the first time)
 docker-compose up
 ```
-4. Go to [localhost:8501 ](http://localhost:8501/) and start to make **YOUR TODOLIST** ! 
+4. Go to [localhost:8501 ](http://localhost:8501/) and start to make **YOUR TODO LIST** ! 
 
 
 ## Project Tree
